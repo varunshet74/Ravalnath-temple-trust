@@ -1,37 +1,98 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset defaults */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff8f0;
+    color: #4a3c1a;
     line-height: 1.6;
-    background: #f9f9f9;
-    color: #333;
-}
-
-header {
-    background: #d9a441;
-    color: white;
-    padding: 1rem;
+    padding: 0 1rem;
+  }
+  
+  header {
+    background: #c49b31;
+    padding: 1.5rem;
     text-align: center;
-}
-
-nav {
-    margin-top: 0.5rem;
-}
-
-nav a {
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+  
+  nav {
+    margin-top: 1rem;
+  }
+  
+  nav a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-main {
-    padding: 1rem;
-}
-
-footer {
-    background: #f4f4f4;
+    margin: 0 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav a:hover {
+    background-color: #b3861e;
+  }
+  
+  main {
+    max-width: 700px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  nav a.active {
+    background: white;
+    color: #c49b31;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    font-weight: 700;
+  }
+  
+  button {
+    background-color: #c49b31;
+    border: none;
+    color: white;
+    padding: 0.7rem 1.3rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #a0761b;
+  }
+  
+  footer {
     text-align: center;
     padding: 1rem;
-    font-size: 0.9rem;
-}
+    margin-top: 4rem;
+    background: #f2e9d9;
+    color: #6b5e2b;
+    font-size: 0.95rem;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.6);
+  }
+  
+  @media (max-width: 600px) {
+    main {
+      margin: 1rem;
+      padding: 1rem;
+    }
+    nav a {
+      margin: 0 8px;
+      font-size: 1rem;
+    }
+  }
+  
