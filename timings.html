@@ -1,32 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darshan Timings - Shree Ravalnath Shivalnath Temple Trust</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darshan Timings - Shree Ravalnath Shivnath Temple Trust</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Shree Ravalnath Shivalnath Temple Trust</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="timings.html" class="active">Timings</a>
-            <a href="contact.html">Contact</a>
-            <a href="ravalnath.html">Ravalnath</a>
-            <a href="shivalnath.html">Shivalnath</a>
-            <a href="mahamaya.html">Mahamaya</a>
-          </nav>
-    </header>
-    <main>
-        <h2>Darshan Timings</h2>
-        <ul>
-            <li>Morning: 6:00 AM – 12:00 PM</li>
-            <li>Evening: 5:00 PM – 9:00 PM</li>
-        </ul>
-    </main>
-    <footer>
-        <p>&copy; 2025 Shree Ravalnath Shivalnath Temple Trust</p>
-    </footer>
+  <header>
+    <img src="images/logo.png" alt="Temple Trust Main Image" class="banner-img">
+    <h1>Shree Ravalnath Shivnath Temple Trust</h1>
+    <nav>
+      <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+      <div class="menu">
+
+        <a href="index.html">Home</a>
+        <a href="timings.html" class="active">Timings</a>
+        <a href="contact.html">Contact</a>
+        <a href="ravalnath.html">Ravalnath</a>
+        <a href="Shivnath.html">Shivnath</a>
+        <a href="mahamaya.html">Mahamaya</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Temple Timings</h2>
+
+    <section>
+      <h3>General Temple Opening Hours</h3>
+      <p>
+        The temple complex is open from <strong>7:00 AM to 8:00 PM</strong> every day.
+      </p>
+    </section>
+
+    <section>
+      <h3>Darshan (Daily) Timings</h3>
+      <table>
+        <tr>
+          <th>Temple</th>
+          <th>Morning</th>
+          <th>Evening</th>
+        </tr>
+        <tr>
+          <td>Shivnath</td>
+          <td>7:00 AM – 1:00 PM</td>
+          <td>4:00 PM – 8:00 PM</td>
+        </tr>
+        <tr>
+          <td>Ravalnath</td>
+          <td>7:00 AM – 1:00 PM</td>
+          <td>3:00 PM – 8:00 PM</td>
+        </tr>
+        <tr>
+          <td>Mahamaya (Bhat Timings)</td>
+          <td>8:00 AM – 12:30 PM</td>
+          <td>3:30 PM – 7:00 PM</td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h3>Abhishek Schedule</h3>
+      <ul>
+        <li><strong>Shivnath</strong>:
+          <ul>
+            <li>Every Monday: 7:30 AM – 11:30 AM</li>
+            <li>Amavasya: 7:30 AM – 11:30 AM</li>
+            <li>Other Days: 7:30 AM – 8:30 AM</li>
+          </ul>
+        </li>
+        <li><strong>Ravalnath</strong>:
+          <ul>
+            <li>Every day: 9:00 AM – 11:30 AM</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Palkhi & Weekly Activities</h3>
+      <ul>
+        <li><strong>Shivnath</strong>: Every Monday Palkhi at 8:00 PM, followed by Aarti.</li>
+        <li><strong>Mahamaya</strong>: Every Friday Palkhi at 8:30 PM, followed by Jogva and Aarti.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Festivals</h3>
+      <p><em>(Exact details will be added soon)</em></p>
+      <ul>
+        <li><strong>Shivnath Temple:</strong> Mahashivratri, Ram Navami, Shravan Maas, Navratra, Jatra</li>
+        <li><strong>Ravalnath Temple:</strong> Ravalnath Vardhapan Din, Navratra, Vijaya Dashami</li>
+        <li><strong>Mahamaya Temple:</strong> Mahamaya Vardhapan, Navratra</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <p>&copy; 2025 Shree Ravalnath Shivnath Temple Trust</p>
+  </footer>
+  <script>
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('nav .menu');
+
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Optional: Close menu on link click for better UX
+    document.querySelectorAll('nav .menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
+
 </html>

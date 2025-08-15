@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shree Ravalnath Shivalnath Temple Trust - Home</title>
+  <title>Shree Ravalnath Shivnath Temple Trust - Home</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <header>
-    <h1>Shree Ravalnath Shivalnath Temple Trust</h1>
+    <img src="images/logo.png" alt="Temple Trust Main Image" class="banner-img">
+    <h1>Shree Ravalnath Shivnath Temple Trust</h1>
     <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="timings.html">Timings</a>
-      <a href="contact.html">Contact</a>
-      <a href="ravalnath.html">Ravalnath</a>
-      <a href="shivalnath.html">Shivalnath</a>
-      <a href="mahamaya.html">Mahamaya</a>
+      <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+      <div class="menu">
+
+        <a href="index.html" class="active">Home</a>
+        <a href="timings.html">Timings</a>
+        <a href="contact.html">Contact</a>
+        <a href="ravalnath.html">Ravalnath</a>
+        <a href="Shivnath.html">Shivnath</a>
+        <a href="mahamaya.html">Mahamaya</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
     </nav>
   </header>
   <main>
     <section>
-      <h2>Welcome to Shree Ravalnath Shivalnath Temple Trust</h2>
-      <p>Experience the spiritual aura at Shree Ravalnath Shivalnath Temple Trust. Find information on darshan timings, temple activities, and connect with us for your needs.</p>
+      <h2>Welcome to Shree Ravalnath Shivnath Temple Trust</h2>
+      <p>Experience the spiritual aura at Shree Ravalnath Shivnath Temple Trust. Find information on darshan timings,
+        temple activities, and connect with us for your needs.</p>
       <button onclick="location.href='timings.html'">View Darshan Timings</button>
     </section>
   </main>
   <footer>
-    <p>&copy; 2025 Shree Ravalnath Shivalnath Temple Trust</p>
+    <p>&copy; 2025 Shree Ravalnath Shivnath Temple Trust</p>
   </footer>
+  <script>
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('nav .menu');
+
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Optional: Close menu on link click for better UX
+    document.querySelectorAll('nav .menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
+
 </html>

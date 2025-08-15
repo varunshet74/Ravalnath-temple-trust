@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Shree Ravalnath Shivnath Temple Trust</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+      margin-top: 1.7rem;
+    }
+
+    .gallery-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 9px;
+      cursor: pointer;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.10);
+      transition: transform 0.15s;
+    }
+
+    .gallery-thumb:hover {
+      transform: scale(1.035);
+      box-shadow: 0 2px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    .video-thumb-wrap {
+      position: relative;
+      aspect-ratio: 1/1;
+      width: 100%;
+      height: 100%;
+      border-radius: 9px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.10);
+      cursor: pointer;
+      background: #202020;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-overlay {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.7em;
+      color: #fff7e5;
+      background: rgba(0, 0, 0, 0.48);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+      pointer-events: none;
+      z-index: 4;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.76);
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.2s;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 13px;
+      background: #fff;
+      position: relative;
+      box-shadow: 0 6px 32px rgba(0, 0, 0, 0.28);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.6rem 1.2rem 0.8rem 1.2rem;
+    }
+
+    .modal img {
+      max-width: 72vw;
+      max-height: 70vh;
+      border-radius: 11px;
+      background: #f4f4f4;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .modal video {
+      max-width: 72vw;
+      max-height: 70vh;
+      border-radius: 11px;
+      background: #000;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: #c49b31;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 11;
+      transition: color 0.18s;
+    }
+
+    .modal-close:hover {
+      color: #ab7e15;
+    }
+
+    @media (max-width: 600px) {
+      .modal-content {
+        max-width: 98vw;
+        padding: 0.6rem 0.2rem 0.6rem 0.2rem;
+      }
+
+      .modal img,
+      .modal video {
+        max-width: 95vw;
+        max-height: 68vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header><div class="header-flex">
+    <img src="images/logo.png" alt="Temple Trust Main Image" class="banner-img">
+    <h1>Shree Ravalnath Shivnath Temple Trust</h1>
+  </div>
+    <nav>
+      <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+      <div class="menu">
+
+        <a href="index.html">Home</a>
+        <a href="timings.html">Timings</a>
+        <a href="contact.html">Contact</a>
+        <a href="ravalnath.html">Ravalnath</a>
+        <a href="Shivnath.html">Shivnath</a>
+        <a href="mahamaya.html">Mahamaya</a>
+        <a href="gallery.html" class="active">Gallery</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Gallery</h2>
+    <div id="gallery-container" class="gallery-grid"></div>
+
+    <!-- Modal for full-image or full-video view -->
+    <div id="img-modal" class="modal" tabindex="-1">
+      <div class="modal-content" id="modal-content">
+        <button class="modal-close" id="close-modal" aria-label="Close">&times;</button>
+        <img id="modal-img" src="" alt="Gallery Image" style="display:none;" />
+        <video id="modal-video" controls style="display:none;"></video>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Shree Ravalnath Shivnath Temple Trust</p>
+  </footer>
+
+  <script>
+    const images = [
+      'p1.jpeg',
+      'p2.jpeg',
+      'p3.jpeg',
+      'p4.jpeg',
+      'p5.jpeg',
+    ];
+
+    const videos = [
+      'v1.mp4',
+      'v2.mp4'
+    ];
+
+    const galleryContainer = document.getElementById('gallery-container');
+
+    images.forEach(img => {
+      const thumb = document.createElement('img');
+      thumb.src = "gallery/" + img;
+      thumb.setAttribute('data-full', "gallery/" + img);
+      thumb.className = "gallery-thumb";
+      thumb.alt = "Temple photo";
+      galleryContainer.appendChild(thumb);
+    });
+
+    videos.forEach(vid => {
+      const videoBox = document.createElement('div');
+      videoBox.className = "video-thumb-wrap";
+
+      const vidThumb = document.createElement('video');
+      vidThumb.src = "gallery/" + vid;
+      vidThumb.className = "gallery-thumb";
+      vidThumb.muted = true;
+      vidThumb.playsInline = true;
+      vidThumb.preload = "metadata";
+      vidThumb.style.objectFit = 'cover';
+      vidThumb.style.pointerEvents = 'none'; // so clicks go on div
+
+      videoBox.appendChild(vidThumb);
+
+      const playIcon = document.createElement('span');
+      playIcon.className = 'play-overlay';
+      playIcon.innerHTML = '&#9658;';
+      videoBox.appendChild(playIcon);
+
+      videoBox.addEventListener('click', function () {
+        openModalVideo("gallery/" + vid);
+      });
+
+      galleryContainer.appendChild(videoBox);
+    });
+
+    const modal = document.getElementById('img-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalVideo = document.getElementById('modal-video');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('gallery-thumb') && e.target.tagName === "IMG") {
+        modalImg.src = e.target.getAttribute('data-full');
+        modalImg.style.display = 'block';
+        modalVideo.style.display = 'none';
+        modal.classList.add('active');
+        modal.focus();
+      }
+      if ((e.target === modal || e.target === closeModalBtn)) {
+        closeModal();
+      }
+    });
+
+    function openModalVideo(src) {
+      modalImg.style.display = 'none';
+      modalVideo.src = src;
+      modalVideo.style.display = 'block';
+      modal.classList.add('active');
+      modal.focus();
+      modalVideo.play();
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modalImg.src = '';
+      modalVideo.pause();
+      modalVideo.src = '';
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+  <script>
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('nav .menu');
+
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Optional: Close menu on link click for better UX
+    document.querySelectorAll('nav .menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+
+</html>
