@@ -13,6 +13,8 @@
       overflow: hidden;
       background-color: #fff3e0;
       font-family: 'Arial', sans-serif;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-y: auto;   /* Enable vertical scroll */
     }
     .loader {
       position: fixed;
@@ -115,7 +117,7 @@
         mainContent.style.opacity = "1";
         mainContent.removeAttribute('aria-hidden');
         if (loader) loader.style.display = 'none';
-        document.body.style.overflow = ''; // Enable scroll
+        document.body.style.overflow = 'auto';  // explicitly enable scrolling
       }, 1500);
     });
 
