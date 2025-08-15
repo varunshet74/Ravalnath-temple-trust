@@ -210,3 +210,16 @@ nav .menu {
     margin-bottom: 0.7em;
   }
 }
+
+/* greeting image */
+.greeting-img {
+  display: block;
+  width: 55vw;           /* 55% of the viewport width = automatically adjusts! */
+  max-width: 360px;      /* Never grows bigger than 360px on large screens */
+  height: auto;
+  margin-bottom: 1.1em;
+  border-radius: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+  background: #fff8f0;
+  object-fit: contain;
+}

@@ -1,21 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shree Ravalnath Shivnath Temple Trust - Home</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Loader styles */
+    body, html {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background-color: #fff3e0;
+      font-family: 'Arial', sans-serif;
+    }
+    .loader {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff3e0;
+      z-index: 10000;
+      opacity: 1;
+      animation: fadeOutLoader 1.5s ease forwards;
+      animation-delay: 1.5s;
+      user-select: none;
+    }
+    .namaste-icon {
+      font-size: 64px;
+      color: #d94f16;
+      text-align: center;
+      margin-bottom: 0.4em;
+    }
+    .kuldevi-text {
+      font-size: 1.3rem;
+      color: #a8471c;
+      font-weight: 600;
+      font-style: italic;
+    }
+    @keyframes fadeOutLoader {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    .main-content {
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      padding: 20px;
+      max-width: 720px;
+      margin: 6rem auto 4rem auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #4a3c1a;
+    }
+    .main-content.active {
+      opacity: 1;
+    }
+  </style>
 </head>
-
 <body>
+  <!-- Loader div (optional) -->
+
+  <!-- Loader hidden once page is loaded -->
+
+  <div class="loader" id="loader" aria-label="Loading greeting">
+    <img src="images/logo.png" alt="Greeting Image" class="greeting-img">
+    <div class="namaste-icon" aria-hidden="true">🙏</div>
+    <div class="kuldevi-text">Shree Kuldevi Prasanna</div>
+  </div>
+
   <header>
-    <img src="images/logo.png" alt="Temple Trust Main Image" class="banner-img">
+    <img src="images/logo.png" alt="Temple Trust Main Image" class="banner-img" />
     <h1>Shree Ravalnath Shivnath Temple Trust</h1>
     <nav>
       <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
       <div class="menu">
-
         <a href="index.html" class="active">Home</a>
         <a href="timings.html">Timings</a>
         <a href="contact.html">Contact</a>
@@ -26,26 +90,41 @@
       </div>
     </nav>
   </header>
-  <main>
+
+  <main aria-hidden="true" id="main-content" style="opacity:0; transition: opacity 1.5s ease;">
     <section>
       <h2>Welcome to Shree Ravalnath Shivnath Temple Trust</h2>
-      <p>Experience the spiritual aura at Shree Ravalnath Shivnath Temple Trust. Find information on darshan timings,
-        temple activities, and connect with us for your needs.</p>
+      <p>
+        Experience the spiritual aura at Shree Ravalnath Shivnath Temple Trust.
+        Find information on darshan timings, temple activities, and connect with us for your needs.
+      </p>
       <button onclick="location.href='timings.html'">View Darshan Timings</button>
     </section>
   </main>
+
   <footer>
     <p>&copy; 2025 Shree Ravalnath Shivnath Temple Trust</p>
   </footer>
+
   <script>
+    // Hide loader and fade in main content
+    window.addEventListener('DOMContentLoaded', () => {
+      const mainContent = document.getElementById('main-content');
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        mainContent.style.opacity = "1";
+        mainContent.removeAttribute('aria-hidden');
+        if (loader) loader.style.display = 'none';
+        document.body.style.overflow = ''; // Enable scroll
+      }, 1500);
+    });
+
+    // Menu toggle JS here
     const toggleBtn = document.querySelector('.menu-toggle');
     const menu = document.querySelector('nav .menu');
-
     toggleBtn.addEventListener('click', () => {
       menu.classList.toggle('open');
     });
-
-    // Optional: Close menu on link click for better UX
     document.querySelectorAll('nav .menu a').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('open');
@@ -54,5 +133,4 @@
   </script>
   <script src="js/version.js"></script>
 </body>
-
 </html>
